@@ -70,3 +70,40 @@ export const loginController = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const registerAdmin = async (req, res) => {
+  try {
+    const { fullName, email, password } = req.body;
+
+    if (!fullName || !email || !password) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const existingUser = await prisma.user.findFirst({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: {
+        id: crypto.randomUUID(),
+        fullName,
+        email,
+        password: hashedPassword,
+        role: 'admin', // Set role to admin
+      },
+    });
+
+    const token = generateToken(user.id, user.role);
+
+    res.status(201).json({
+      token,
+      user: { id: user.id, fullName: user.fullName, email: user.email, role: user.role },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};

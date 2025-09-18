@@ -35,7 +35,7 @@ describe('Auth Endpoints', () => {
         id: expect.any(String),
         fullName: 'Test User',
         email: 'test@example.com',
-        role: 'user',
+        role: 'user', // Default role for regular registration
       });
     });
 
@@ -67,8 +67,58 @@ describe('Auth Endpoints', () => {
     });
   });
 
+  describe('POST /api/auth/register-admin', () => {
+    it('should register an admin user and return 201', async () => {
+      const newAdmin = {
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        password: 'admin123',
+      };
+
+      const res = await request(app)
+        .post('/api/auth/register-admin')
+        .send(newAdmin)
+        .expect(201);
+
+      expect(res.body).toHaveProperty('token');
+      expect(res.body.user).toMatchObject({
+        id: expect.any(String),
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        role: 'admin', // Explicit admin role
+      });
+    });
+
+    it('should return 400 if email already exists', async () => {
+      const newAdmin = {
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        password: 'admin123',
+      };
+      await request(app).post('/api/auth/register-admin').send(newAdmin);
+
+      const duplicateAdmin = {
+        fullName: 'Duplicate Admin',
+        email: 'admin@example.com',
+        password: 'admin456',
+      };
+      await request(app)
+        .post('/api/auth/register-admin')
+        .send(duplicateAdmin)
+        .expect(400);
+    });
+
+    it('should return 400 if required fields are missing', async () => {
+      const incompleteAdmin = { fullName: 'Admin User' }; // Missing email or password
+      await request(app)
+        .post('/api/auth/register-admin')
+        .send(incompleteAdmin)
+        .expect(400);
+    });
+  });
+
   describe('POST /api/auth/login', () => {
-    it('should login a user and return 200 with token', async () => {
+    it('should login a regular user and return 200 with token', async () => {
       const newUser = {
         fullName: 'Test User',
         email: 'test@example.com',
@@ -91,13 +141,58 @@ describe('Auth Endpoints', () => {
         id: expect.any(String),
         fullName: 'Test User',
         email: 'test@example.com',
-        role: 'user',
+        role: 'user', // Regular user role
       });
     });
 
-    it('should return 401 for invalid credentials', async () => {
+    it('should login an admin user and return 200 with token', async () => {
+      const newAdmin = {
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        password: 'admin123',
+      };
+      await request(app).post('/api/auth/register-admin').send(newAdmin);
+
+      const loginData = {
+        email: 'admin@example.com',
+        password: 'admin123',
+      };
+
+      const res = await request(app)
+        .post('/api/auth/login')
+        .send(loginData)
+        .expect(200);
+
+      expect(res.body).toHaveProperty('token');
+      expect(res.body.user).toMatchObject({
+        id: expect.any(String),
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        role: 'admin', // Admin role
+      });
+    });
+
+    it('should return 401 for invalid credentials (regular user)', async () => {
       const loginData = {
         email: 'test@example.com',
+        password: 'wrongpassword',
+      };
+      await request(app)
+        .post('/api/auth/login')
+        .send(loginData)
+        .expect(401);
+    });
+
+    it('should return 401 for invalid credentials (admin user)', async () => {
+      const newAdmin = {
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        password: 'admin123',
+      };
+      await request(app).post('/api/auth/register-admin').send(newAdmin);
+
+      const loginData = {
+        email: 'admin@example.com',
         password: 'wrongpassword',
       };
       await request(app)
@@ -112,6 +207,34 @@ describe('Auth Endpoints', () => {
         .post('/api/auth/login')
         .send(incompleteLogin)
         .expect(400);
+    });
+  });
+
+  describe('Role-based Access in JWT', () => {
+    it('should include user role in JWT payload', async () => {
+      // Register regular user
+      await request(app).post('/api/auth/register').send({
+        fullName: 'Regular User',
+        email: 'user@example.com',
+        password: 'password123',
+      });
+      const userLogin = await request(app)
+        .post('/api/auth/login')
+        .send({ email: 'user@example.com', password: 'password123' });
+
+      // Register admin user
+      await request(app).post('/api/auth/register-admin').send({
+        fullName: 'Admin User',
+        email: 'admin@example.com',
+        password: 'admin123',
+      });
+      const adminLogin = await request(app)
+        .post('/api/auth/login')
+        .send({ email: 'admin@example.com', password: 'admin123' });
+
+      // Verify role is included in response (JWT payload decoded by middleware)
+      expect(userLogin.body.user.role).toBe('user');
+      expect(adminLogin.body.user.role).toBe('admin');
     });
   });
 });
