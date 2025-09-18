@@ -12,3 +12,36 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model User{
+  id String @id @default(uuid())
+  fullName String 
+  email String @unique
+  password String
+  role String @default("user") // 'user' or 'admin'
+  transactions Transaction[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Sweet {
+  id String @id @default(uuid())
+  name String
+  category String 
+  price Float 
+  quantity Int @default(0)
+  transactions Transaction[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  id String @id @default(uuid())
+  userId String
+  sweetId String 
+  quantity Int
+  timestamp DateTime @default(now())
+  user User @relation(fields: [userId],references: [id])
+  sweet Sweet @relation(fields: [sweetId],references: [id])
+}
