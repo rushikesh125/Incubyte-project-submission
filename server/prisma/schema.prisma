@@ -42,6 +42,6 @@ model Transaction {
   sweetId String 
   quantity Int
   timestamp DateTime @default(now())
-  user User @relation(fields: [userId],references: [id])
-  sweet Sweet @relation(fields: [sweetId],references: [id])
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  sweet Sweet @relation(fields: [sweetId],references: [id],onDelete: Cascade)
 }
