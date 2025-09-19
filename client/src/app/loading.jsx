@@ -6,11 +6,11 @@ export default function Loading() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
       <div className="relative">
         {/* Outer rotating circle */}
-        <div className="absolute inset-0 border-2 border-blue-200 rounded-full animate-ping-slow"></div>
+        <div className="absolute inset-0 border-2 border-purple-200 rounded-full animate-ping-slow"></div>
         
         {/* Main loader with gradient */}
         <div className="relative flex items-center justify-center w-24 h-24">
-          <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
+          <Loader2 className="w-12 h-12 text-purple-500 animate-spin" />
         </div>
       </div>
       
@@ -26,7 +26,7 @@ export default function Loading() {
       
       {/* Progress indicator */}
       <div className="mt-8 w-48 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-        <div className="h-full bg-blue-400 rounded-full animate-progress"></div>
+        <div className="h-full bg-purple-400 rounded-full animate-progress"></div>
       </div>
       
       <style jsx>{`

@@ -1,7 +1,7 @@
 // components/cart/CartPage.jsx
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { 
@@ -21,6 +21,7 @@ import {
   Minus,
   ArrowLeft
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CartPage = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const CartPage = () => {
   const items = useSelector(selectCartItems);
   const { totalQuantity, totalPrice } = useSelector(selectCartTotals);
   const isCartEmpty = useSelector(selectIsCartEmpty);
+  const user = useSelector((state) => state.user.user);
 
   const handleRemoveItem = (id) => {
     dispatch(removeFromCart(id));
@@ -40,6 +42,12 @@ const CartPage = () => {
   const handleCheckout = () => {
     router.push("/checkout");
   };
+  useEffect(()=>{
+    if(!user){
+        toast.error("Please Login ")
+        router.push("/login")
+    }
+  },[user])
 
   if (isCartEmpty) {
     return (

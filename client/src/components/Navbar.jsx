@@ -18,7 +18,9 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-purple-600">🍭 SweetShop</span>
+            <span className="text-xl font-bold text-purple-600 flex items-center gap-x-2">
+              <img src="/logo.png" className="w-10 h-10" />
+               SweetShop</span>
           </Link>
 
           {/* Right Side - Auth/Cart */}

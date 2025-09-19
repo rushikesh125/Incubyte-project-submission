@@ -2,6 +2,7 @@
 import {
   ChevronDown,
   HelpCircle,
+  History,
   LogOut,
   Settings,
   Shield,
@@ -160,6 +161,14 @@ const UserDropdown = () => {
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span>Cart</span>
+              </Link>
+              <Link
+                href="/orders"
+                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
+                onClick={() => setIsDropdownOpen(false)}
+              >
+                <History className="w-4 h-4" />
+                <span>Orders</span>
               </Link>
             </div>
 
