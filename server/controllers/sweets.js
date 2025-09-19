@@ -62,6 +62,9 @@ export const createSweet = async (req, res) => {
     if (price < 0 || quantity < 0) {
       return res.status(400).json({ error: 'Price and quantity must be non-negative' });
     }
+    if (typeof posterURL !== 'string' || posterURL.trim().length === 0) {
+      return res.status(400).json({ error: 'posterURL must be a non-empty string' });
+    }
 
     const sweet = await prisma.sweet.create({
       data: {
@@ -84,6 +87,15 @@ export const createSweet = async (req, res) => {
     res.status(201).json(sweet);
   } catch (error) {
     console.error(error);
+    if (error.name === 'PrismaClientValidationError') {
+      return res.status(400).json({ error: 'Invalid input data - check field types' });
+    }
+    
+    // Handle other specific errors
+    if (error.code === 'P2002') { // Unique constraint violation
+      return res.status(400).json({ error: 'Data already exists' });
+    }
+    
     res.status(500).json({ error: 'Server error' });
   }
 };

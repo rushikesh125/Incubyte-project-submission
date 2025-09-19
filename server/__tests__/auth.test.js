@@ -237,4 +237,44 @@ describe('Auth Endpoints', () => {
       expect(adminLogin.body.user.role).toBe('admin');
     });
   });
+  describe('GET /api/auth/me (Protected)', () => {
+  it('should return current user for valid token', async () => {
+    // Register and login
+    await request(app).post('/api/auth/register').send({
+      fullName: 'Test User',
+      email: 'test@example.com',
+      password: 'password123',
+    });
+
+    const loginRes = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'test@example.com', password: 'password123' })
+      .expect(200);
+
+    const token = loginRes.body.token;
+
+    const res = await request(app)
+      .get('/api/auth/me')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200);
+
+    expect(res.body.user).toMatchObject({
+      id: expect.any(String),
+      fullName: 'Test User',
+      email: 'test@example.com',
+      role: 'user',
+    });
+  });
+
+  it('should return 401 for missing token', async () => {
+    await request(app).get('/api/auth/me').expect(401);
+  });
+
+  it('should return 403 for invalid token', async () => {
+    await request(app)
+      .get('/api/auth/me')
+      .set('Authorization', 'Bearer invalid-token')
+      .expect(403);
+  });
+});
 });

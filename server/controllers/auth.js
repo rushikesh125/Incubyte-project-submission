@@ -107,3 +107,39 @@ export const registerAdmin = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+// GET /api/auth/me - Validate token and return current user
+export const getCurrentUser = async (req, res) => {
+  try {
+    // req.user is set by authenticateToken middleware
+    const { userId, role } = req.user;
+    
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return fresh user data
+    res.status(200).json({
+      user: {
+        id: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
