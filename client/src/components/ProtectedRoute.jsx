@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import { selectIsAuthenticated, selectIsAdmin } from '@/store/slices/userSlice';
+import { selectIsAuthenticated, selectIsAdmin } from '@/store/userSlice';
 import { Loader2 } from 'lucide-react';
 
 export default function ProtectedRoute({ children, adminOnly = false }) {
