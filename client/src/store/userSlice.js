@@ -1,24 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // Authentication state
-  user: null,                    // User object { id, fullName, email, role }
-  token: null,                   // JWT token for API calls
-  isAuthenticated: false,        // Boolean: logged in or not
-  
-  // UI state
-  loading: false,                // Show loading spinner
-  error: null,                   // API error messages
-  
-  // Role-based access
-  isAdmin: false,                // Derived from user.role === 'admin'
+  user: null,
+  token: null,
+  isAuthenticated: false,
+  isAdmin: false,
+  loading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {
-    // Set user credentials (login/register success)
     setUser: (state, action) => {
       const { user, token } = action.payload;
       state.user = user;
@@ -29,28 +23,25 @@ const userSlice = createSlice({
       state.error = null;
     },
     
-    // Update user info (e.g., profile update)
     updateUser: (state, action) => {
       state.user = { ...state.user, ...action.payload };
       state.error = null;
     },
     
-    // Start loading (before API calls)
     setLoading: (state, action) => {
       state.loading = action.payload;
       if (action.payload) {
-        state.error = null; // Clear error on new request
+        state.error = null;
       }
     },
     
-    // Set error message
     setError: (state, action) => {
       state.error = action.payload;
       state.loading = false;
     },
     
-    // Logout/clear user
-    removeUser: (state) => {
+    // Logout action
+    logout: (state) => {
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
@@ -59,14 +50,24 @@ const userSlice = createSlice({
       state.error = null;
     },
     
-    // Clear error only
     clearError: (state) => {
       state.error = null;
     },
   },
 });
 
-// Selectors for use in components
+// Handle rehydration from persisted state
+if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  userSlice.reducer.rehydrate = (state, action) => {
+    return {
+      ...initialState,
+      ...action.payload?.user,
+      isAuthenticated: !!action.payload?.user?.user,
+      isAdmin: action.payload?.user?.user?.role === 'admin',
+    };
+  };
+}
+
 export const selectUser = (state) => state.user.user;
 export const selectToken = (state) => state.user.token;
 export const selectIsAuthenticated = (state) => state.user.isAuthenticated;
@@ -79,7 +80,7 @@ export const {
   updateUser, 
   setLoading, 
   setError, 
-  removeUser, 
+  logout, 
   clearError 
 } = userSlice.actions;
 
