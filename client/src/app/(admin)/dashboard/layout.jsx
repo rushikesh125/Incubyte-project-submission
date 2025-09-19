@@ -23,7 +23,8 @@ import {
   Edit3,
   PlusCircleIcon,
   Users2,
-  ShieldUser
+  ShieldUser,
+  BadgeDollarSign
 } from "lucide-react";
 import Link from "next/link";
 // import DashNav from "@/components/DashNav"; // Assuming this is your top nav component
@@ -91,10 +92,10 @@ const DashboardLayout = ({ children }) => {
     icon: ShieldUser,
   },
   {
-    link: "/dashboard/reports",
-    id: "Reports",
-    label: "Reports",
-    icon: BarChart3,
+    link: "/dashboard/transactions",
+    id: "transactions",
+    label: "Transactions",
+    icon: BadgeDollarSign,
   },
   {
     link: "/dashboard/settings",

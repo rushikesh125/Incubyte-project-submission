@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, Upload, Image, AlertCircle, CheckCircle, TextSearch, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Loading from "@/app/loading";
 
 // ImgBB API configuration
 const IMGBB_API_KEY = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
@@ -275,9 +276,7 @@ const UpdateSweetForm = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8 max-w-4xl flex justify-center items-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-theme-color"></div>
-      </div>
+      <Loading/>
     );
   }
 

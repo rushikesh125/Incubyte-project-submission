@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { Mail, Lock, Eye, EyeOff, User, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../../../components/ui/button'; // Adjust path
+import Loading from '@/app/loading';
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -61,9 +62,7 @@ export default function RegisterPage() {
   // Show loading if checking auth
   if (loading && !error && !credentials.email) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader className="animate-spin text-purple-500" size={48} />
-      </div>
+      <Loading/>
     );
   }
 

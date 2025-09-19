@@ -52,6 +52,7 @@ import {
   X,
 } from "lucide-react";
 import { getAllSweets, deleteSweet, updateSweet } from "@/lib/api/sweets";
+import Loading from "@/app/loading";
 
 const ManageSweets = () => {
   const dispatch = useDispatch();
@@ -244,9 +245,7 @@ const ManageSweets = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-theme-color"></div>
-      </div>
+      <Loading/>
     );
   }
 

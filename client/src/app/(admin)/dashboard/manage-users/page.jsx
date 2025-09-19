@@ -27,6 +27,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Search, Users, Shield, Trash2, AlertCircle } from "lucide-react";
 import { getAllUsers, promoteUserToAdmin, deleteUser } from "@/lib/api/users";
+import Loading from "@/app/loading";
 
 const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -122,9 +123,7 @@ const ManageUsers = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-theme-color"></div>
-      </div>
+     <Loading/>
     );
   }
 

@@ -20,3 +20,13 @@ export const getUserTransactions = async () => {
     throw error;
   }
 };
+
+export const getAllTransactions = async () => {
+  try {
+    const response = await api.get('/api/transactions/all');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch all transactions:', error);
+    throw error;
+  }
+};
