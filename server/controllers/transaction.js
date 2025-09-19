@@ -49,9 +49,9 @@ export const createTransaction = async (req, res) => {
       return res.status(400).json({ error: 'Invalid transaction data' });
     }
 
-    // Ensure quantity is an integer
+    // Ensure quantity is a positive integer
     const requestedQuantity = parseInt(quantity);
-    if (isNaN(requestedQuantity) || requestedQuantity <= 0) {
+    if (isNaN(requestedQuantity) || requestedQuantity <= 0 || !Number.isInteger(parseFloat(quantity))) {
       return res.status(400).json({ error: 'Quantity must be a positive integer' });
     }
 
@@ -80,7 +80,7 @@ export const createTransaction = async (req, res) => {
       },
     });
 
-    // Update sweet quantity
+    // Update sweet quantity - FIXED: Added 'data' property
     await prisma.sweet.update({
       where: { id: sweetId },
       data: { quantity: sweet.quantity - requestedQuantity },
