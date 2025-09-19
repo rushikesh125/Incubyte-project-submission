@@ -52,3 +52,30 @@ export const logoutUser = () => {
   localStorage.removeItem('persist:root');
   api.defaults.headers.Authorization = null;
 };
+
+export const getCurrentUser = async () => {
+  try {
+    const response = await api.get('/api/auth/me');
+    return response.data;
+  } catch (error) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      // Token invalid - logout
+      logoutUser();
+      throw new Error('Session expired');
+    }
+    throw error;
+  }
+};
+
+export const validateToken = async () => {
+  try {
+    const response = await api.get('/api/auth/me');
+    return response.data; // Returns { user: { id, fullName, email, role } }
+  } catch (error) {
+    // Token invalid/expired - let caller handle logout
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      throw new Error('Token invalid');
+    }
+    throw error;
+  }
+};

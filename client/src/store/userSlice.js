@@ -40,7 +40,6 @@ const userSlice = createSlice({
       state.loading = false;
     },
     
-    // Logout action
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -56,17 +55,20 @@ const userSlice = createSlice({
   },
 });
 
-// Handle rehydration from persisted state
-if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__) {
-  userSlice.reducer.rehydrate = (state, action) => {
+// Fixed rehydration logic - correctly merge persisted state and derive fields
+userSlice.reducer.rehydrate = (state, action) => {
+  const persistedState = action.payload?.user; // Access persisted slice at state.user
+  if (persistedState) {
     return {
-      ...initialState,
-      ...action.payload?.user,
-      isAuthenticated: !!action.payload?.user?.user,
-      isAdmin: action.payload?.user?.user?.role === 'admin',
+      ...state, // Keep initialState base
+      ...persistedState, // Merge ALL persisted properties (user, token, etc.)
+      // Re-derive fields based on merged state
+      isAuthenticated: !!persistedState.token, // Check if token exists
+      isAdmin: persistedState.user?.role === 'admin', // Single 'user', not double
     };
-  };
-}
+  }
+  return state;
+};
 
 export const selectUser = (state) => state.user.user;
 export const selectToken = (state) => state.user.token;

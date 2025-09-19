@@ -6,15 +6,14 @@ import userReducer from './userSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  // Only persist user and token (not loading/error states)
-  whitelist: ['user'], // Only persist user slice
+  whitelist: ['user',"isAuthenticated","isAdmin","loading","error","token"], // Persist the entire slice at state.user
 };
 
 const persistedUserReducer = persistReducer(persistConfig, userReducer);
 
 export const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
+    user: persistedUserReducer, // Mounted at state.user
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -26,4 +25,3 @@ export const store = configureStore({
 
 // Create persistor for use in Provider
 export const persistor = persistStore(store);
-

@@ -26,7 +26,7 @@ export default function RegisterPage() {
   // Redirect if already logged in
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/sweets');
+      router.push('/');
       return;
     }
   }, [isAuthenticated, router]);

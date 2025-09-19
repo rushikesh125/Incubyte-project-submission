@@ -10,7 +10,7 @@ const AuthLayout = ({children}) => {
     // Redirect if already logged in
       useEffect(() => {
         if (isAuthenticated) {
-          router.push('/');
+        //   router.push('/');
           return;
         }
       }, [isAuthenticated, router]);

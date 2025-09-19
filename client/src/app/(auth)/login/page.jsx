@@ -29,9 +29,9 @@ export default function LoginPage() {
 
       // Redirect based on role
       if (response.user.role === 'admin') {
-        // router.push('/admin/dashboard');
+        router.push('/dashboard');
       } else {
-        // router.push('/sweets');
+        router.back();
       }
     } catch (err) {
       const errorMsg = err.response?.data?.error || 'Login failed';
