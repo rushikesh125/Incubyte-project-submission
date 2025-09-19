@@ -5,6 +5,7 @@ import AuthRouter from "./routes/auth.js";
 import sweetsRouter from "./routes/sweets.js";
 import path from 'path';
 import usersRouter from "./routes/users.js";
+import transactionsRouter from "./routes/transactions.js";
 
 // Load environment-specific config
 const envPath = process.env.NODE_ENV === 'test' 
@@ -32,5 +33,6 @@ app.get("/",(req,res)=>{
 app.use('/api/auth',AuthRouter);
 app.use('/api/sweets',sweetsRouter);
 app.use('/api/users',usersRouter);
+app.use('/api/transactions', transactionsRouter);
 
 export default app; //for testing
