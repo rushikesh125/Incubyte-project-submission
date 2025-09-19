@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectIsAuthenticated, selectUser } from "@/store/userSlice";
+import { selectCartTotals } from "@/store/cartSlice"; // Import cart selector
 import UserDropdown from "./UserDropdown";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Menu } from "lucide-react";
@@ -9,6 +10,7 @@ import { ShoppingCart, Menu } from "lucide-react";
 export default function Navbar() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
+  const { totalQuantity } = useSelector(selectCartTotals); // Get cart totals
 
   return (
     <nav className="bg-white shadow-sm border-b">
@@ -19,17 +21,17 @@ export default function Navbar() {
             <span className="text-xl font-bold text-purple-600">🍭 SweetShop</span>
           </Link>
 
-         
-
           {/* Right Side - Auth/Cart */}
           <div className="flex items-center space-x-4">
             {/* Cart Icon */}
-            {/* <Link href="/cart" className="relative p-2 text-gray-600 hover:text-purple-600">
+            <Link href="/cart" className="relative p-2 text-gray-600 hover:text-purple-600">
               <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                3
-              </span>
-            </Link> */}
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {totalQuantity}
+                </span>
+              )}
+            </Link>
 
             {/* Auth Section */}
             {isAuthenticated ? (

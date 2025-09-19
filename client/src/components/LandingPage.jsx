@@ -108,6 +108,7 @@ const LandingPage = () => {
   }
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-b from-theme-color/5 to-white">
       {/* Hero Section */}
       <div className="relative py-16 px-4 bg-gradient-to-r from-theme-color to-purple-600 text-white">
@@ -209,6 +210,7 @@ const LandingPage = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   LogOut,
   Settings,
   Shield,
+  ShoppingCart,
   User,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -21,7 +22,7 @@ const UserDropdown = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const router = useRouter();
-  
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef(null);
@@ -45,7 +46,7 @@ const UserDropdown = () => {
       // Clear API token and Redux state
       logoutUser(); // Your API logout function
       dispatch(logout()); // Your Redux logout action
-      
+
       toast.success("Logged out successfully!");
       router.push("/login");
     } catch (error) {
@@ -119,19 +120,19 @@ const UserDropdown = () => {
                 </div>
               </div>
               {/* Role Badge */}
-              <span className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-medium ${
-                role === 'admin' 
-                  ? 'bg-purple-100 text-purple-800' 
-                  : 'bg-gray-100 text-gray-800'
-              }`}>
-                {role === 'admin' ? 'Admin' : 'Customer'}
+              <span
+                className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-medium ${
+                  role === "admin"
+                    ? "bg-purple-100 text-purple-800"
+                    : "bg-gray-100 text-gray-800"
+                }`}
+              >
+                {role === "admin" ? "Admin" : "Customer"}
               </span>
             </div>
 
             {/* Navigation Links */}
             <div className="py-2">
-             
-              
               <Link
                 href="/profile"
                 className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
@@ -140,8 +141,8 @@ const UserDropdown = () => {
                 <Settings className="w-4 h-4" />
                 <span>Profile Settings</span>
               </Link>
-              
-              {role === 'admin' && (
+
+              {role === "admin" && (
                 <Link
                   href="/dashboard"
                   className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
@@ -151,14 +152,14 @@ const UserDropdown = () => {
                   <span>Admin Dashboard</span>
                 </Link>
               )}
-              
+
               <Link
-                href="/support"
+                href="/cart"
                 className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
                 onClick={() => setIsDropdownOpen(false)}
               >
-                <HelpCircle className="w-4 h-4" />
-                <span>Help Center</span>
+                <ShoppingCart className="w-4 h-4" />
+                <span>Cart</span>
               </Link>
             </div>
 
