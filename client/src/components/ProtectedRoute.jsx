@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
     if (!isAuthenticated) {
       router.push('/login');
     } else if (adminOnly && !isAdmin) {
-      router.push('/sweets');
+      router.push('/');
     }
   }, [isAuthenticated, isAdmin, adminOnly, router]);
 

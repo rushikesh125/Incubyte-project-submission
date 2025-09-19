@@ -1,9 +1,12 @@
-import React from 'react'
 
-const ManageSweets = () => {
+import ManageSweets from "@/components/ManageSweets";
+
+
+export default function ManageSweetsPage() {
   return (
-    <div>ManageSweets</div>
-  )
+    <div className="container mx-auto">
+      
+      <ManageSweets />
+    </div>
+  );
 }
-
-export default ManageSweets

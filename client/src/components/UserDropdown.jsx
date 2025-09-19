@@ -130,14 +130,7 @@ const UserDropdown = () => {
 
             {/* Navigation Links */}
             <div className="py-2">
-              <Link
-                href="/sweets"
-                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
-                onClick={() => setIsDropdownOpen(false)}
-              >
-                <User className="w-4 h-4" />
-                <span>My Sweets</span>
-              </Link>
+             
               
               <Link
                 href="/profile"

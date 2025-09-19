@@ -22,7 +22,8 @@ import {
   FileSlidersIcon,
   Edit3,
   PlusCircleIcon,
-  Users2
+  Users2,
+  ShieldUser
 } from "lucide-react";
 import Link from "next/link";
 // import DashNav from "@/components/DashNav"; // Assuming this is your top nav component
@@ -43,7 +44,7 @@ const DashboardLayout = ({ children }) => {
   useEffect(() => {
     if (!isAdmin) {
       toast.error("Access denied - Admin only");
-      router.push("/sweets"); // Redirect to user page
+      router.push("/"); // Redirect to user page
     }
   }, [isAdmin, router]);
 
@@ -84,10 +85,10 @@ const DashboardLayout = ({ children }) => {
     icon: Edit3,
   },
   {
-    link: "/dashboard/restock",
-    id: "Restock",
-    label: "Restock Inventory",
-    icon: FileSlidersIcon,
+    link: "/dashboard/manage-users",
+    id: "manage-user",
+    label: "Manage Users",
+    icon: ShieldUser,
   },
   {
     link: "/dashboard/reports",
