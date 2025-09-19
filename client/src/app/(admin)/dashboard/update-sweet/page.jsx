@@ -132,32 +132,40 @@ const UpdateSweetForm = () => {
   };
 
   // Validate form
-  const validateForm = () => {
-    const newErrors = {};
+ const validateForm = () => {
+  const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Sweet name is required";
-    }
+  if (!formData.name.trim()) {
+    newErrors.name = "Sweet name is required";
+  }
 
-    if (!formData.category) {
-      newErrors.category = "Category is required";
-    }
+  if (!formData.category) {
+    newErrors.category = "Category is required";
+  }
 
-    if (!formData.price || isNaN(formData.price) || parseFloat(formData.price) <= 0) {
-      newErrors.price = "Price must be a positive number";
-    }
+  if (
+    !formData.price ||
+    isNaN(formData.price) ||
+    parseFloat(formData.price) <= 0
+  ) {
+    newErrors.price = "Price must be a positive number";
+  }
 
-    if (!formData.quantity || isNaN(formData.quantity) || parseInt(formData.quantity) < 0) {
-      newErrors.quantity = "Quantity must be a non-negative number";
-    }
+  if (
+    formData.quantity === "" || // empty string check
+    isNaN(formData.quantity) || // not a number
+    parseInt(formData.quantity) < 0 // negative numbers not allowed
+  ) {
+    newErrors.quantity = "Quantity must be a non-negative number";
+  }
 
-    if (!imageUrl) {
-      newErrors.image = "Sweet image is required";
-    }
+  if (!imageUrl) {
+    newErrors.image = "Sweet image is required";
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   // Handle form submission
   const handleSubmit = async (e) => {

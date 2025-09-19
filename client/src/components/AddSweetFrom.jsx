@@ -106,7 +106,10 @@ const AddSweetForm = () => {
       newErrors.price = "Price must be a positive number";
     }
 
-    if (!formData.quantity || isNaN(formData.quantity) || parseInt(formData.quantity) < 0) {
+    if ( editFormData.quantity === "" ||
+  isNaN(editFormData.quantity) ||
+  parseInt(editFormData.quantity) < 0
+) {
       newErrors.quantity = "Quantity must be a non-negative number";
     }
 

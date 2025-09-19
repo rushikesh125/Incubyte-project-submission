@@ -179,37 +179,36 @@ const ManageSweets = () => {
   };
 
   // Validate edit form
-  const validateEditForm = () => {
-    const newErrors = {};
+ const validateEditForm = () => {
+  const newErrors = {};
 
-    if (!editFormData.name.trim()) {
-      newErrors.name = "Sweet name is required";
-    }
+  if (!editFormData.name.trim()) {
+    newErrors.name = "Sweet name is required";
+  }
 
-    if (!editFormData.category) {
-      newErrors.category = "Category is required";
-    }
+  if (!editFormData.category) {
+    newErrors.category = "Category is required";
+  }
 
-    if (
-      !editFormData.price ||
-      isNaN(editFormData.price) ||
-      parseFloat(editFormData.price) <= 0
-    ) {
-      newErrors.price = "Price must be a positive number";
-    }
+  if (
+    !editFormData.price ||
+    isNaN(editFormData.price) ||
+    parseFloat(editFormData.price) <= 0
+  ) {
+    newErrors.price = "Price must be a positive number";
+  }
 
-    if (
-      !editFormData.quantity ||
-      isNaN(editFormData.quantity) ||
-      parseInt(editFormData.quantity) < 0
-    ) {
-      newErrors.quantity = "Quantity must be a non-negative number";
-    }
+  if (
+    editFormData.quantity === "" ||
+    isNaN(editFormData.quantity) ||
+    parseInt(editFormData.quantity) < 0
+  ) {
+    newErrors.quantity = "Quantity must be a non-negative number";
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
   // Handle update sweet
   const handleUpdateSweet = async (e) => {
     e.preventDefault();

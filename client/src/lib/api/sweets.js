@@ -57,3 +57,13 @@ export const deleteSweet = async (id) => {
     throw error;
   }
 };
+
+export const searchSweets = async (query) => {
+  try {
+    const response = await api.get(`/api/sweets/search?query=${encodeURIComponent(query)}`);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to search sweets:', error);
+    throw error;
+  }
+};
