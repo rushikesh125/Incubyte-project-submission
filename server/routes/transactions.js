@@ -1,11 +1,12 @@
 import express from "express";
-import { createTransaction, getUserTransactions } from "../controllers/transaction.js";
-import {authenticateToken} from "../middlewares/auth.js"
+import { createTransaction, getAllTransactions, getUserTransactions } from "../controllers/transaction.js";
+import {authenticateToken, authorizeAdmin} from "../middlewares/auth.js"
 const transactionsRouter = express.Router();
 
 transactionsRouter.use(authenticateToken);
 
 transactionsRouter.post('/', createTransaction);
 transactionsRouter.get('/', getUserTransactions);
+transactionsRouter.get('/all', authenticateToken, authorizeAdmin, getAllTransactions);
 
 export default transactionsRouter;

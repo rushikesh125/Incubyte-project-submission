@@ -1,5 +1,43 @@
 import {prisma} from "../prisma/client.js"
 
+
+export const getAllTransactions = async (req, res) => {
+  try {
+    // Verify user is admin (this should be handled by middleware)
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+
+    const transactions = await prisma.transaction.findMany({
+      include: {
+        user: {
+          select: {
+            id: true,
+            fullName: true,
+            email: true,
+          },
+        },
+        sweet: {
+          select: {
+            id: true,
+            name: true,
+            posterURL: true,
+            price: true,
+            category: true,
+          },
+        },
+      },
+      orderBy: { timestamp: 'desc' },
+    });
+
+    res.status(200).json(transactions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
 // CREATE: Add new transaction
 export const createTransaction = async (req, res) => {
   try {
