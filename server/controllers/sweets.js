@@ -1,4 +1,4 @@
-import { prisma } from "../prisma/client";
+import { prisma } from "../prisma/client.js";
 
 // READ: Get all sweets (User)
 export const getAllSweets = async (req, res) => {
@@ -8,6 +8,7 @@ export const getAllSweets = async (req, res) => {
         id: true,
         name: true,
         category: true,
+        posterURL:true,
         price: true,
         quantity: true,
         createdAt: true,
@@ -39,6 +40,7 @@ export const searchSweets = async (req, res) => {
         id: true,
         name: true,
         category: true,
+        posterURL:true,
         price: true,
         quantity: true,
       },
@@ -53,8 +55,8 @@ export const searchSweets = async (req, res) => {
 // CREATE: Add new sweet (Admin)
 export const createSweet = async (req, res) => {
   try {
-    const { name, category, price, quantity } = req.body;
-    if (!name || !category || price === undefined || quantity === undefined) {
+    const { name, category, price, quantity,posterURL } = req.body;
+    if (!name || !category || price === undefined || quantity === undefined || posterURL === undefined) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     if (price < 0 || quantity < 0) {
@@ -66,6 +68,7 @@ export const createSweet = async (req, res) => {
         id: crypto.randomUUID(),
         name,
         category,
+        posterURL,
         price,
         quantity,
       },
@@ -88,8 +91,8 @@ export const createSweet = async (req, res) => {
 export const updateSweet = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, category, price, quantity } = req.body;
-    if (!name || !category || price === undefined || quantity === undefined) {
+    const { name, category, price, quantity,posterURL } = req.body;
+    if (!name || !category || price === undefined || quantity === undefined || posterURL == undefined) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     if (price < 0 || quantity < 0) {
@@ -108,6 +111,7 @@ export const updateSweet = async (req, res) => {
         id: true,
         name: true,
         category: true,
+        posterURL:true,
         price: true,
         quantity: true,
       },

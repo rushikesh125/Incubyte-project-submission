@@ -3,10 +3,14 @@ import dotenv from "dotenv"
 import cors from "cors"
 import AuthRouter from "./routes/auth.js";
 import sweetsRouter from "./routes/sweets.js";
+import path from 'path';
 
+// Load environment-specific config
+const envPath = process.env.NODE_ENV === 'test' 
+  ? path.join(process.cwd(), '.env.test')
+  : path.join(process.cwd(), '.env');
 
-dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
-
+  dotenv.config({ path: envPath });
 
 const app = express();
 

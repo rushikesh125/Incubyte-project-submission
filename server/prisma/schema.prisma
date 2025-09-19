@@ -30,6 +30,7 @@ model Sweet {
   name String
   category String 
   price Float 
+  posterURL String
   quantity Int @default(0)
   transactions Transaction[]
   createdAt DateTime @default(now())
