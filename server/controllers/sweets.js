@@ -77,6 +77,7 @@ export const createSweet = async (req, res) => {
         name: true,
         category: true,
         price: true,
+        posterURL:true,
         quantity: true,
       },
     });
@@ -106,7 +107,7 @@ export const updateSweet = async (req, res) => {
 
     const updatedSweet = await prisma.sweet.update({
       where: { id },
-      data: { name, category, price, quantity },
+      data: { name, category, price, quantity ,posterURL},
       select: {
         id: true,
         name: true,
