@@ -4,7 +4,8 @@ import {
   searchSweets, 
   createSweet, 
   updateSweet, 
-  deleteSweet 
+  deleteSweet, 
+  getSweetById
 } from '../controllers/sweets.js';
 import { authenticateToken, authorizeAdmin } from '../middlewares/auth.js';
 
@@ -12,6 +13,7 @@ const sweetsRouter = express.Router();
 
 sweetsRouter.get('/', getAllSweets);
 sweetsRouter.get('/search', searchSweets);
+sweetsRouter.get('/:id', getSweetById);
 
 
 // Apply authentication to all sweets routes

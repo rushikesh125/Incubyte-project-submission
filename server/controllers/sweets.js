@@ -21,6 +21,35 @@ export const getAllSweets = async (req, res) => {
   }
 };
 
+
+export const getSweetById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const sweet = await prisma.sweet.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        category: true,
+        posterURL: true,
+        price: true,
+        quantity: true,
+        createdAt: true,
+      },
+    });
+    
+    if (!sweet) {
+      return res.status(404).json({ error: 'Sweet not found' });
+    }
+    
+    res.status(200).json(sweet);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 // READ: Search sweets by name/category (User)
 export const searchSweets = async (req, res) => {
   try {
