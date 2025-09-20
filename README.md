@@ -48,7 +48,7 @@ password: 12344321
 
 ## 📂 Project Structure  
 <p align="center">
-  <img width="240" height="742" alt="project-structure" src="https://github.com/user-attachments/assets/e6171116-1184-4064-b0ed-1c857634d238" />
+  <img width="240" height="742" alt="project-structure" src="https://i.ibb.co/N2zntp7t/Screenshot-2025-09-20-195844.png" />
 </p>
 
 ---
