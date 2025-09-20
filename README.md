@@ -1,43 +1,59 @@
-# TDD Sweet Shop Management System 
-## Live Demo : https://incubyte-project-submission.vercel.app/
+# TDD Sweet Shop Management System  
 
-### Credentials : Admin Dashboard
+## 🚀 Live Demo  
+🔗 [https://incubyte-project-submission.vercel.app/](https://incubyte-project-submission.vercel.app/)  
+
+---
+
+## 🔑 Test Credentials  
+
+### 👨‍💼 Admin Dashboard  
 ```bash
-email : admin@mail.com
+email: admin@mail.com  
+password: admin@123  
 ```
 
+### 👤 User  
 ```bash
-pass: admin@123
+email: user@mail.com  
+password: 12344321  
 ```
 
-### Credentials : User
-```bash
-email : user@mail.com
-```
+---
 
-```bash
-pass: 12344321
-```
+## 🛠 Tech Stack  
+- **Frontend**: Next.js, TailwindCSS, Shadcn UI  
+- **Backend**: Node.js, Express.js, JWT  
+- **Database**: PostgreSQL (via Prisma ORM)  
+- **Image Storage**: ImgBB API  
 
-### Tech Stack 
-- frontend : Nextjs , Tailwindcss , shadcn UI
-- backend : nodejs , expressjs , jwt
-- Database : PostgresSQL + Prisma
-- for Images storing: IMG BB api 
+---
 
-## HOSTING : 
-- Vercel : Deployed Frontend & Backend Saperately on Vercel
-- DB : using Neon DB ( which is Free Hosted Version os PostgreSQL 
+## ☁️ Hosting  
+- **Frontend & Backend**: Deployed separately on **Vercel**  
+- **Database**: Using **NeonDB** (Free hosted PostgreSQL)  
 
-## My AI Usage
+---
 
-- AI Tools : Used Grok & Qwen 
-- How i used : I used Grok For Planning ,Brainstrom API architecture , DB schema , Frontend Structure , Test Cases , logic building , then i used Qwen for frontend development 
-- My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code & complete developmetn lifecycle 
+## 🤖 My AI Usage  
 
+- **AI Tools Used**: Grok, Qwen  
+- **How I Used Them**:  
+  - Used **Grok** for planning, brainstorming API architecture, DB schema, frontend structure, and designing test case logic.  
+  - Used **Qwen** for frontend development assistance.  
+- **My Reflection**:  
+  I refactored and modified all AI-generated code to properly integrate with my existing codebase, ensuring consistency, maintainability, and a unified UI experience.  
 
+---
 
-# Admin Dashboard
+## 📂 Project Structure  
+<p align="center">
+  <img width="240" height="742" alt="project-structure" src="https://github.com/user-attachments/assets/e6171116-1184-4064-b0ed-1c857634d238" />
+</p>
+
+---
+
+## 📊 Dashboard Screenshots  
 <p float="left">
   <img src="https://i.ibb.co/dwxq62yw/Screenshot-85.png" width="250" />
   <img src="https://i.ibb.co/QvHwfGsG/Screenshot-86.png" width="250" />
@@ -50,8 +66,9 @@ pass: 12344321
   <img src="https://i.ibb.co/q3kDMfZG/Screenshot-90.png" width="250" />
 </p>
 
-# User
+---
 
+## 👥 User Screenshots  
 <p float="left">
   <img src="https://i.ibb.co/Fb2sCWjZ/Screenshot-91.png" width="250" />
   <img src="https://i.ibb.co/kVBSh4Nd/Screenshot-92.png" width="250" />
@@ -69,8 +86,9 @@ pass: 12344321
   <img src="https://i.ibb.co/cKJpynd2/Screenshot-98.png" width="250" />
 </p>
 
+---
 
-# TDD - Testing 
+## ✅ TDD - Testing Evidence  
 <p float="left">
   <img src="https://i.ibb.co/S42KFqW9/Screenshot-2025-09-20-140428.png" width="250"/>
   <img src="https://i.ibb.co/YFXW3Y4d/Screenshot-2025-09-20-140447.png" width="250" />
