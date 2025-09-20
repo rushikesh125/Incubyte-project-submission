@@ -1,4 +1,10 @@
-TDD Sweet Management System 
+# TDD Sweet Management System 
+## Live Demo : https://incubyte-project-submission.vercel.app/
+
+### Tech Stack 
+- frontend : Nextjs , Tailwindcss , shadcn UI
+- backend : nodejs , expressjs , jwt
+- Database : PostgresSQL + Prisma
 
 # Dashboard
 <p float="left">
