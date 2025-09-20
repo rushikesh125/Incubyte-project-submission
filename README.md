@@ -41,7 +41,7 @@ pass: 12344321
 </p>
 
 
-# Dashboard
+# Admin Dashboard
 <p float="left">
   <img src="https://i.ibb.co/dwxq62yw/Screenshot-85.png" width="250" />
   <img src="https://i.ibb.co/QvHwfGsG/Screenshot-86.png" width="250" />
