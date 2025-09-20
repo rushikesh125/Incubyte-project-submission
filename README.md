@@ -1,6 +1,17 @@
 # TDD Sweet Management System 
 ## Live Demo : https://incubyte-project-submission.vercel.app/
 
+credentials :
+### Admin Dashboard
+```bash
+email : admin@mail.com
+```
+
+```bash
+pass: admin@123
+```
+
+
 ### Tech Stack 
 - frontend : Nextjs , Tailwindcss , shadcn UI
 - backend : nodejs , expressjs , jwt
