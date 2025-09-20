@@ -97,12 +97,6 @@ const DashboardLayout = ({ children }) => {
     label: "Transactions",
     icon: BadgeDollarSign,
   },
-  {
-    link: "/dashboard/settings",
-    id: "Settings",
-    label: "Settings",
-    icon: Settings2,
-  },
 ];
 
   // Function to determine if a menu item is active based on current path

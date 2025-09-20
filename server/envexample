@@ -1,0 +1,9 @@
+# Development & Production
+DATABASE_URL="postgresql://neondb_owner:npg_0yQrZblJk7EK@ep-empty-fog-ad44vvxd-pooler.c-2.us-east-1.aws.neon.tech/incubyte?sslmode=require&channel_binding=require"
+JWT_SECRET="rushi"
+PORT=4000
+
+# Testing 
+# DATABASE_URL="postgresql://postgres:pass@localhost:5432/incubyte_test?schema=public"
+# JWT_SECRET="rushi"
+# PORT=5000

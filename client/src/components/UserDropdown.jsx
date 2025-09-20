@@ -1,3 +1,4 @@
+// components/UserDropdown.jsx
 "use client";
 import {
   ChevronDown,
@@ -14,12 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { logout, selectUser } from "@/store/userSlice"; // Your Redux slice
-import { logoutUser } from "@/lib/api/auth"; // Your auth API
+import { logout, selectUser } from "@/store/userSlice";
+import { clearCart } from "@/store/cartSlice"; // Import clearCart action
+import { logoutUser } from "@/lib/api/auth";
 import { Button } from "@/components/ui/button";
 
 const UserDropdown = () => {
-  // Get user from Redux instead of Firebase
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -40,13 +41,16 @@ const UserDropdown = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Handle logout with your custom auth system
+  // Handle logout with complete state cleanup
   const handleLogout = async () => {
     setIsLoading(true);
     try {
-      // Clear API token and Redux state
+      // Clear API token and all Redux state
       logoutUser(); // Your API logout function
-      dispatch(logout()); // Your Redux logout action
+      
+      // Dispatch both logout and clearCart actions
+      dispatch(logout()); // Clear user state
+      dispatch(clearCart()); // Clear cart state
 
       toast.success("Logged out successfully!");
       router.push("/login");
@@ -60,12 +64,12 @@ const UserDropdown = () => {
 
   // Show loading or redirect if no user
   if (!user) {
-    return null; // Or redirect to login
+    return null;
   }
 
   // Extract user data from Redux state
   const { fullName, email, role } = user;
-  const imgSrc = "/profile.png"; // Default profile image (or use user.photoURL if available)
+  const imgSrc = "/profile.png";
 
   return (
     <>
@@ -73,7 +77,7 @@ const UserDropdown = () => {
         {/* Profile Button */}
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center gap-2 p-2 rounded-lg transition-colors hover:bg-gray-50 "
+          className="flex items-center gap-2 p-2 rounded-lg transition-colors hover:bg-gray-50"
           aria-label="User menu"
         >
           <img
@@ -83,7 +87,7 @@ const UserDropdown = () => {
             height={32}
             className="rounded-full border border-gray-200"
             onError={(e) => {
-              e.target.src = "/profile.png"; // Fallback image
+              e.target.src = "/profile.png";
             }}
           />
           <div className="hidden sm:block">
