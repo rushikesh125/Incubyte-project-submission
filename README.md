@@ -72,6 +72,6 @@ pass: 12344321
 
 # TDD - Testing 
 <p float="left">
-  <img src=" https://i.ibb.co/S42KFqW9/Screenshot-2025-09-20-140428.png" width="250"/>
+  <img src="https://i.ibb.co/S42KFqW9/Screenshot-2025-09-20-140428.png" width="250"/>
   <img src="https://i.ibb.co/YFXW3Y4d/Screenshot-2025-09-20-140447.png" width="250" />
 </p>
