@@ -35,10 +35,6 @@ pass: 12344321
 - How i used : I used Grok For Planning ,Brainstrom API architecture , DB schema , Frontend Structed , Test Cases logic building , then i used Qwen for frontend development 
 - My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code , ui
 
-## Project Structure 
-<p float="left">
-<img width="240" height="742" alt="image" src="https://github.com/user-attachments/assets/e6171116-1184-4064-b0ed-1c857634d238" />
-</p>
 
 
 # Admin Dashboard
