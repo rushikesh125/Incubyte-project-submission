@@ -10,11 +10,26 @@ email : admin@mail.com
 pass: admin@123
 ```
 
+### Credentials : User
+```bash
+email : user@mail.com
+```
+
+```bash
+pass: 12344321
+```
 
 ### Tech Stack 
 - frontend : Nextjs , Tailwindcss , shadcn UI
 - backend : nodejs , expressjs , jwt
 - Database : PostgresSQL + Prisma
+- for Images storing: IMG BB api 
+
+## My AI Usage
+
+- AI Tools : Used Grok & Qwen 
+- How i used : I used Grok For Planning ,Brainstrom API architecture , DB schema , Frontend Structed , Test Cases logic building , then i used Qwen for frontend development 
+- My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code , ui 
 
 # Dashboard
 <p float="left">
