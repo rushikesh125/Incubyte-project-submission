@@ -25,6 +25,10 @@ pass: 12344321
 - Database : PostgresSQL + Prisma
 - for Images storing: IMG BB api 
 
+## HOSTING : 
+- Vercel : Deployed Frontend & Backend Saperately on Vercel
+- DB : using Neon DB ( which is Free Hosted Version os PostgreSQL 
+
 ## My AI Usage
 
 - AI Tools : Used Grok & Qwen 
