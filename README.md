@@ -1,8 +1,7 @@
 # TDD Sweet Management System 
 ## Live Demo : https://incubyte-project-submission.vercel.app/
 
-credentials :
-### Admin Dashboard
+### Credentials : Admin Dashboard
 ```bash
 email : admin@mail.com
 ```
