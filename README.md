@@ -32,8 +32,8 @@ pass: 12344321
 ## My AI Usage
 
 - AI Tools : Used Grok & Qwen 
-- How i used : I used Grok For Planning ,Brainstrom API architecture , DB schema , Frontend Structed , Test Cases logic building , then i used Qwen for frontend development 
-- My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code , ui
+- How i used : I used Grok For Planning ,Brainstrom API architecture , DB schema , Frontend Structure , Test Cases , logic building , then i used Qwen for frontend development 
+- My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code & complete developmetn lifecycle 
 
 
 
