@@ -36,43 +36,9 @@ pass: 12344321
 - My Reflection : I refactored & modified every code given by AI to properly implement & run with my exiting code and to maintain consistancy in code , ui
 
 ## Project Structure 
-📂 Project Structure
-📦 project-root
- ┣ 📂 client
- ┃ ┣ 📂 .next
- ┃ ┣ 📂 node_modules
- ┃ ┣ 📂 public
- ┃ ┣ 📂 src
- ┃ ┃ ┣ 📂 components
- ┃ ┃ ┣ 📄 envExample
- ┃ ┃ ┣ 📄 jsconfig.json
- ┃ ┃ ┣ 📄 next.config.mjs
- ┃ ┃ ┣ 📄 package.json
- ┃ ┃ ┣ 📄 package-lock.json
- ┃ ┃ ┣ 📄 postcss.config.mjs
- ┃ ┃ ┗ 📄 README.md
- ┃ ┣ 📄 .env.local
- ┃ ┣ 📄 .gitignore
- ┃ ┗ 📄 package.json
- ┃
- ┣ 📂 server
- ┃ ┣ 📂 __tests__
- ┃ ┣ 📂 controllers
- ┃ ┣ 📂 middlewares
- ┃ ┣ 📂 node_modules
- ┃ ┣ 📂 prisma
- ┃ ┣ 📂 routes
- ┃ ┣ 📄 .env
- ┃ ┣ 📄 .gitignore
- ┃ ┣ 📄 index.js
- ┃ ┣ 📄 jest.config.js
- ┃ ┣ 📄 jest.setup.js
- ┃ ┣ 📄 package.json
- ┃ ┣ 📄 package-lock.json
- ┃ ┗ 📄 server.js
- ┃
- ┣ 📄 incubyte_data.sql
- ┗ 📄 README.md
+<p float="left">
+<img width="240" height="742" alt="image" src="https://github.com/user-attachments/assets/e6171116-1184-4064-b0ed-1c857634d238" />
+</p>
 
 
 # Dashboard
@@ -86,4 +52,24 @@ pass: 12344321
   <img src="https://i.ibb.co/WbZjCBZ/Screenshot-88.png" width="250" />
   <img src="https://i.ibb.co/6cG8yqSZ/Screenshot-89.png" width="250" />
   <img src="https://i.ibb.co/q3kDMfZG/Screenshot-90.png" width="250" />
+</p>
+
+# User
+
+<p float="left">
+  <img src="https://i.ibb.co/dwxq62yw/Screenshot-85.png" width="250" />
+  <img src="https://i.ibb.co/QvHwfGsG/Screenshot-86.png" width="250" />
+  <img src="https://i.ibb.co/V0F8NBMW/Screenshot-87.png" width="250" />
+</p>
+
+<p float="left">
+  <img src="https://i.ibb.co/WbZjCBZ/Screenshot-88.png" width="250" />
+  <img src="https://i.ibb.co/6cG8yqSZ/Screenshot-89.png" width="250" />
+  <img src="https://i.ibb.co/q3kDMfZG/Screenshot-90.png" width="250" />
+</p>
+
+# TDD - Testing 
+<p float="left">
+  <img src=" https://i.ibb.co/S42KFqW9/Screenshot-2025-09-20-140428.png" width="250" />
+  <img src="https://i.ibb.co/YFXW3Y4d/Screenshot-2025-09-20-140447.png" width="250" />
 </p>
